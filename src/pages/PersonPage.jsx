@@ -4,8 +4,8 @@ import { films, photos, locations } from '../data/mockData';
 
 Chart.register(...registerables);
 
-const TUGRA_DETAIL_PHOTO = '/assets/tugra-detail-photo.png';
-const DAMLA_DETAIL_PHOTO = '/assets/damla-detail-photo.png';
+const TUGRA_DETAIL_PHOTO = 'assets/tugra-detail-photo.png';
+const DAMLA_DETAIL_PHOTO = 'assets/damla-detail-photo.png';
 
 const personConfig = {
   tugra: {

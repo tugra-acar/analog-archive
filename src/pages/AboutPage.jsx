@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
-const TUGRA_PHOTO = '/assets/tugra-photo.png';
-const DAMLA_PHOTO = '/assets/damla-photo.png';
+const TUGRA_PHOTO = 'assets/tugra-photo.png';
+const DAMLA_PHOTO = 'assets/damla-photo.png';
 
 export default function AboutPage() {
   const navigate = useNavigate();

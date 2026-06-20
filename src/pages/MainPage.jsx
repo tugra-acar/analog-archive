@@ -1,4 +1,4 @@
-const HERO_BG = '/assets/hero-bg.png';
+const HERO_BG = 'assets/hero-bg.png';
 
 export default function MainPage() {
   return (

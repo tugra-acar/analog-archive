@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
 import Navbar from './components/Navbar';
 import MainPage from './pages/MainPage';
@@ -11,7 +11,7 @@ import UploadPage from './pages/UploadPage';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <ScrollToTop />
       <div className="page-container">
         <Navbar />
@@ -26,6 +26,6 @@ export default function App() {
           <Route path="/upload" element={<UploadPage />} />
         </Routes>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }

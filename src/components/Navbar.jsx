@@ -15,7 +15,7 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <NavLink to={isMainPage ? "/upload" : "/"} className="navbar-logo" aria-label={isMainPage ? "Upload" : "Home"}>
-        <img src="/assets/logo.svg" alt="D&T Film Archive" />
+        <img src="assets/logo.svg" alt="D&T Film Archive" />
       </NavLink>
       
       <div className="navbar-links">
