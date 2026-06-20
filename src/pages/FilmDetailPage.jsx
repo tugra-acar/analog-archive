@@ -417,7 +417,7 @@ export default function FilmDetailPage() {
             className="photo-item"
             onClick={() => setSearchParams({ photoId: photo.id })}
           >
-            <img src={photo.imageUrl} alt="" loading="lazy" />
+            <img src={photo.thumbUrl || photo.imageUrl} alt="" loading="lazy" />
           </div>
         )) : (
           <div style={{ gridColumn: '1/-1', textAlign: 'center', color: 'var(--text-muted)', fontSize: 20, padding: 40 }}>

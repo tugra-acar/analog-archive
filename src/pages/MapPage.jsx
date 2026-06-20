@@ -205,7 +205,7 @@ export default function MapPage() {
                       onClick={() => setLightboxPhoto(photo)}
                     >
                       <img 
-                        src={photo.imageUrl} 
+                        src={photo.thumbUrl || photo.imageUrl} 
                         alt="" 
                         className="map-film-photo" 
                         style={{ width: '100%', height: 'auto', display: 'block', margin: 0 }} 

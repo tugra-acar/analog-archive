@@ -167,7 +167,7 @@ export default function ArchivePage() {
               onClick={() => navigate(`/archive/${film.id}`)}
               id={`film-card-${film.id}`}
             >
-              <img src={film.coverPhotoUrl} alt={film.name} loading="lazy" />
+              <img src={film.coverThumbUrl || film.coverPhotoUrl} alt={film.name} loading="lazy" />
               <div className="film-card-overlay">
                 <span className="film-card-name">{film.name}</span>
                 <div className="film-card-meta">
