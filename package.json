@@ -3,6 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "contributors": [
+    {
+      "name": "Damla Demirok",
+      "url": "https://github.com/damladmrk"
+    }
+  ],
   "scripts": {
     "dev:frontend": "vite",
     "dev:backend": "node --watch server.js",
