@@ -7,8 +7,10 @@ export default function ArchivePage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [dateSort, setDateSort] = useState('newest'); // 'newest' or 'oldest'
   const [colorFilter, setColorFilter] = useState(null); // 'colored' or 'bw'
+  const [soulFilter, setSoulFilter] = useState(null);
   const [showDateMenu, setShowDateMenu] = useState(false);
   const [showColorMenu, setShowColorMenu] = useState(false);
+  const [showSoulMenu, setShowSoulMenu] = useState(false);
   const [showFavorites, setShowFavorites] = useState(false);
 
   const filteredFilms = useMemo(() => {
@@ -31,6 +33,11 @@ export default function ArchivePage() {
       result = result.filter(f => f.type === colorFilter);
     }
 
+    // Soul (Photographer) filter
+    if (soulFilter) {
+      result = result.filter(f => f.soul === soulFilter);
+    }
+
     // Date sort
     if (dateSort === 'newest') {
       result.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -39,7 +46,7 @@ export default function ArchivePage() {
     }
 
     return result;
-  }, [searchQuery, dateSort, colorFilter, showFavorites]);
+  }, [searchQuery, dateSort, colorFilter, soulFilter, showFavorites]);
 
 
   return (
@@ -66,8 +73,8 @@ export default function ArchivePage() {
         <div className="filter-panel">
           {/* All */}
           <div
-            className={`filter-item ${!showFavorites && !colorFilter ? 'active' : ''}`}
-            onClick={() => { setShowFavorites(false); setColorFilter(null); }}
+            className={`filter-item ${!showFavorites && !colorFilter && !soulFilter ? 'active' : ''}`}
+            onClick={() => { setShowFavorites(false); setColorFilter(null); setSoulFilter(null); }}
             id="filter-all"
           >
             <div className="filter-item-left">
@@ -154,6 +161,35 @@ export default function ArchivePage() {
             >
               Colored
             </div>
+          </div>
+
+          {/* Photographer Filter */}
+          <div
+            className={`filter-item ${soulFilter ? 'active' : ''}`}
+            onClick={() => setShowSoulMenu(!showSoulMenu)}
+            id="filter-soul"
+          >
+            <div className="filter-item-left">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" className="filter-icon">
+                <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="#93948E"/>
+              </svg>
+              <span className="filter-label">Soul</span>
+            </div>
+            <svg className={`filter-arrow ${showSoulMenu ? 'open' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <polyline points="18 15 12 9 6 15" />
+            </svg>
+          </div>
+          <div className={`filter-submenu ${showSoulMenu ? 'open' : ''}`}>
+            {['tugra', 'damla'].map(soul => (
+              <div
+                key={soul}
+                className={`filter-suboption ${soulFilter === soul ? 'active' : ''}`}
+                onClick={() => setSoulFilter(soulFilter === soul ? null : soul)}
+                style={{ textTransform: 'capitalize' }}
+              >
+                {soul}
+              </div>
+            ))}
           </div>
         </div>
 

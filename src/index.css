@@ -1926,16 +1926,14 @@ img {
 
   .filter-panel {
     flex-direction: row;
-    overflow-x: auto;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     gap: 6px;
     padding-bottom: 8px;
-    -webkit-overflow-scrolling: touch;
   }
 
   .filter-item {
     min-width: auto;
-    flex: 0 0 auto;
+    flex: 1 1 auto;
     padding: 5px 12px;
     height: 34px;
   }
@@ -1947,15 +1945,6 @@ img {
   .filter-icon {
     width: 18px;
     height: 18px;
-  }
-
-  .filter-submenu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    z-index: 10;
-    background: var(--bg-primary);
   }
 
   .filter-suboption {
