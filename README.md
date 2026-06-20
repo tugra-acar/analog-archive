@@ -55,3 +55,7 @@ Since the database (`photos.json`) and the actual photos (`public/images/uploads
    git commit -m "Added a new film roll: [Roll Name]"
    git push origin main
    ```
+
+## Credits
+
+- **Design:** The beautiful design and UI/UX of this project were created by [Damla Demirok](https://github.com/damladmrk).
