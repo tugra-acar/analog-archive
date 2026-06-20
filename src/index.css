@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;500;600&family=Darker+Grotesque:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;500;600&family=Darker+Grotesque:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
   --bg-primary: #1a2224;
@@ -97,7 +97,7 @@ img {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 9999;
   background: var(--bg-navbar);
   display: flex;
   align-items: center;
@@ -145,6 +145,33 @@ img {
 
 .nav-link.active {
   color: #ffffff;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 6px;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 101;
+  padding: 0;
+}
+
+.hamburger span {
+  width: 24px;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--text-primary);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hamburger span:nth-child(2) {
+  width: 18px;
 }
 
 .nav-link-about {
@@ -1153,7 +1180,8 @@ img {
   font-weight: 400;
   line-height: normal;
   letter-spacing: 1px;
-  margin-top: 2px; /* Visual alignment */
+  margin-top: 2px;
+  /* Visual alignment */
 }
 
 .person-sidebar {
@@ -1675,6 +1703,7 @@ img {
    RESPONSIVE — Tablet (≤ 1024px)
    ═══════════════════════════════════════════════════════ */
 @media (max-width: 1024px) {
+
   /* Layout */
   .page-content {
     padding-top: 90px;
@@ -1846,6 +1875,7 @@ img {
    RESPONSIVE — Mobile (≤ 768px)
    ═══════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
+
   /* Layout */
   .page-content {
     padding-top: 72px;
@@ -1859,23 +1889,84 @@ img {
     padding: 84px 16px 32px;
   }
 
-  /* Navbar — hamburger-free compact layout */
+  /* Navbar — Hamburger menu layout */
   .navbar {
-    padding: 10px 16px;
+    padding: 12px 20px;
   }
 
   .navbar-logo {
     width: 36px;
     height: 34px;
+    z-index: 101;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .hamburger.open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+    width: 24px;
+  }
+
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+
+  .hamburger.open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+    width: 24px;
   }
 
   .navbar-links {
-    gap: 16px;
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 16px;
+    right: 16px;
+    bottom: auto;
+    background: rgba(36, 44, 46, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+    padding: 16px 0;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    transform: translateY(-10px) scale(0.98);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  .navbar-links.mobile-open {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    pointer-events: all;
   }
 
   .nav-link {
-    font-size: 14px;
-    letter-spacing: 0.2px;
+    font-size: 17px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 1.5px;
+    padding: 14px 24px;
+    width: 100%;
+    text-align: center;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    margin: 0 16px;
+    width: calc(100% - 32px);
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--line-color);
   }
 
   /* Main Page */
@@ -2241,13 +2332,6 @@ img {
    RESPONSIVE — Small Mobile (≤ 480px)
    ═══════════════════════════════════════════════════════ */
 @media (max-width: 480px) {
-  .navbar-links {
-    gap: 12px;
-  }
-
-  .nav-link {
-    font-size: 12px;
-  }
 
   .main-title {
     font-size: 28px;

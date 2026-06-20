@@ -1,7 +1,11 @@
+import { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
 export default function Navbar() {
   const location = useLocation();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+  const closeMenu = () => setIsMenuOpen(false);
   
   const isAboutActive = location.pathname.startsWith('/about');
   
@@ -14,15 +18,22 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
-      <NavLink to={isMainPage ? "/upload" : "/"} className="navbar-logo" aria-label={isMainPage ? "Upload" : "Home"}>
+      <NavLink to={isMainPage ? "/upload" : "/"} className="navbar-logo" aria-label={isMainPage ? "Upload" : "Home"} onClick={closeMenu}>
         <img src="assets/logo.svg" alt="D&T Film Archive" />
       </NavLink>
       
-      <div className="navbar-links">
+      <button className={`hamburger ${isMenuOpen ? 'open' : ''}`} onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div className={`navbar-links ${isMenuOpen ? 'mobile-open' : ''}`}>
         <NavLink 
           to="/" 
           className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
           end
+          onClick={closeMenu}
         >
           Main Page
         </NavLink>
@@ -30,6 +41,7 @@ export default function Navbar() {
         <NavLink 
           to="/archive" 
           className={({ isActive }) => `nav-link ${isActive || location.pathname.startsWith('/archive') ? 'active' : ''}`}
+          onClick={closeMenu}
         >
           Archive
         </NavLink>
@@ -37,6 +49,7 @@ export default function Navbar() {
         <NavLink 
           to="/map" 
           className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+          onClick={closeMenu}
         >
           Map
         </NavLink>
@@ -44,6 +57,7 @@ export default function Navbar() {
         <NavLink 
           to="/about" 
           className={`nav-link ${isAboutActive ? 'active' : ''}`}
+          onClick={closeMenu}
         >
           {aboutLabel}
         </NavLink>
