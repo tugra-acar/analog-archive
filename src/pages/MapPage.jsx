@@ -58,6 +58,20 @@ function FlyToScope({ scope }) {
   return null;
 }
 
+// Component for forcing Leaflet to recalculate size
+function MapSizeFixer() {
+  const map = useMap();
+  useEffect(() => {
+    // Invalidate size immediately and after a short delay to handle CSS flex layout settling
+    map.invalidateSize();
+    const timer = setTimeout(() => {
+      map.invalidateSize();
+    }, 250);
+    return () => clearTimeout(timer);
+  }, [map]);
+  return null;
+}
+
 export default function MapPage() {
   const navigate = useNavigate();
   const [scope, setScope] = useState('world');
@@ -137,6 +151,7 @@ export default function MapPage() {
             attributionControl={false}
             style={{ width: '100%', height: '100%', borderRadius: '12px' }}
           >
+            <MapSizeFixer />
             <TileLayer
               url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
               attribution='&copy; <a href="https://carto.com/">CARTO</a>'
